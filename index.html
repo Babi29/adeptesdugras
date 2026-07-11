@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>FAQ — Les Adeptes du Gras</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Spectral:wght@300;400;600&family=JetBrains+Mono:wght@400;600&display=swap');
+
+  :root {
+    --ink: #12100d;
+    --ink-soft: #1c1915;
+    --parch: #ede4d0;
+    --parch-dim: #b8ab90;
+    --ember: #c9682e;
+    --ember-bright: #e8843f;
+    --gold: #c9a44c;
+    --line: rgba(201, 164, 76, 0.22);
+    --line-soft: rgba(184, 171, 144, 0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(201, 104, 46, 0.14), transparent 60%),
+      linear-gradient(180deg, #100e0b 0%, #16130f 100%);
+    color: var(--parch);
+    font-family: 'Spectral', Georgia, serif;
+    font-weight: 300;
+    line-height: 1.65;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: clamp(3rem, 8vw, 6rem) clamp(1.4rem, 5vw, 2.5rem) 6rem;
+  }
+
+  /* ---- HERO ---- */
+  header { margin-bottom: clamp(3rem, 7vw, 5rem); }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ember-bright);
+    margin-bottom: 1.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+  }
+  .eyebrow::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--line), transparent);
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: clamp(2.8rem, 9vw, 4.6rem);
+    line-height: 0.98;
+    letter-spacing: -0.01em;
+    color: #f6efdf;
+    margin-bottom: 1.2rem;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--ember-bright);
+  }
+
+  .lede {
+    font-size: clamp(1.05rem, 2.5vw, 1.22rem);
+    color: var(--parch-dim);
+    max-width: 54ch;
+  }
+
+  .sig {
+    margin-top: 2rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+  }
+  .sig span { color: var(--parch-dim); }
+
+  /* ---- FAQ ---- */
+  .faq { border-top: 1px solid var(--line); }
+
+  .item { border-bottom: 1px solid var(--line-soft); }
+
+  .q {
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    color: var(--parch);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.35rem, 3.5vw, 1.7rem);
+    font-weight: 600;
+    padding: 1.6rem 3rem 1.6rem 0;
+    position: relative;
+    display: flex;
+    gap: 1.1rem;
+    align-items: baseline;
+    transition: color 0.25s ease;
+  }
+  .q:hover { color: var(--ember-bright); }
+  .q:focus-visible {
+    outline: 2px solid var(--ember);
+    outline-offset: 4px;
+    border-radius: 3px;
+  }
+
+  .q .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+    transform: translateY(-0.15em);
+    min-width: 1.6em;
+  }
+
+  .q .chev {
+    position: absolute;
+    right: 0.2rem;
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    border-right: 2px solid var(--ember);
+    border-bottom: 2px solid var(--ember);
+    transform: translateY(-60%) rotate(45deg);
+    transition: transform 0.3s ease;
+  }
+  .item.open .q .chev { transform: translateY(-30%) rotate(225deg); }
+
+  .a-wrap {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s ease;
+  }
+  .item.open .a-wrap { grid-template-rows: 1fr; }
+
+  .a-inner { overflow: hidden; }
+
+  .a {
+    padding: 0 0 1.9rem 2.7rem;
+    color: var(--parch-dim);
+    font-size: 1.02rem;
+    max-width: 62ch;
+  }
+  .a p + p { margin-top: 0.9rem; }
+  .a strong { color: var(--parch); font-weight: 600; }
+  .a .pin {
+    display: block;
+    margin-top: 1.1rem;
+    padding: 0.8rem 1.1rem;
+    border-left: 2px solid var(--ember);
+    background: rgba(201, 104, 46, 0.06);
+    font-size: 0.94rem;
+    color: var(--parch);
+  }
+
+  @media (max-width: 520px) {
+    .a { padding-left: 0; }
+    .q { padding-right: 2.2rem; }
+  }
+
+  /* ---- FOOTER ---- */
+  footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--line);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: var(--parch-dim);
+    line-height: 1.9;
+  }
+  footer .up { color: var(--gold); }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Foire aux questions</div>
+    <h1>Les Adeptes<br>du <em>Gras</em></h1>
+    <p class="lede">Ce qu'il faut savoir sur l'équipe, ses décisions et sa route. Cette page s'étoffe au fil des questions qui remontent.</p>
+    <div class="sig"><span>Capitaine —</span> Mehdi Benaniba (Babi) &nbsp;·&nbsp; <span>Mise à jour —</span> à compléter</div>
+  </header>
+
+  <div class="faq" id="faq">
+
+    <div class="item">
+      <button class="q" aria-expanded="false">
+        <span class="num">01</span>
+        <span class="q-text">Qui dirige désormais l'équipe ?</span>
+        <span class="chev" aria-hidden="true"></span>
+      </button>
+      <div class="a-wrap"><div class="a-inner"><div class="a">
+        <p>Suite au départ de <strong>Thibault Rigolet (GrosTiti)</strong> pour découvrir Warhammer 40000, je reprends le capitanat des Adeptes du Gras. Je ferai le maximum pour la structure et pour le collectif. La continuité du projet et l'ambiance de l'équipe restent la priorité.</p>
+        <p>Même si je porte le tablier de capitaine, je m'entourerai pour l'essentiel des décisions de deux membres de l'équipe et amis de longue date, <strong>Jean-Baptiste Aymes (Bedjy)</strong> et <strong>Olivier Porte (Marmousset)</strong>, qui ont prouvé leur implication et leur niveau ici depuis des années. Une décision collégiale sera toujours plus pertinente qu'une décision individuelle.</p>
+        <p style="margin-top:1.1rem;font-family:'JetBrains Mono',monospace;font-size:0.8rem;letter-spacing:0.06em;color:var(--gold);">— Mehdi Benaniba (Babi)</p>
+      </div></div></div>
+    </div>
+
+    <div class="item">
+      <button class="q" aria-expanded="false">
+        <span class="num">02</span>
+        <span class="q-text">Vous fusionnez avec l'Alliance pour le Big Four ?</span>
+        <span class="chev" aria-hidden="true"></span>
+      </button>
+      <div class="a-wrap"><div class="a-inner"><div class="a">
+        <p>Oui, mais de façon <strong>strictement temporaire et limitée au Big Four</strong> — l'événement qui réunit les quatre plus grosses équipes d'Age of Sigmar, et dont la récompense est le capitanat de l'équipe de France.</p>
+        <p>Les Adeptes du Gras et l'Alliance mutualisent leur expérience et leur préparation le temps de cet unique tournoi. L'objectif est simple : profiter de notre proximité et de nos acquis respectifs pour aller chercher ce capitanat.</p>
+        <span class="pin">La fusion s'arrête à la fin du Big Four. Point final.</span>
+      </div></div></div>
+    </div>
+
+    <div class="item">
+      <button class="q" aria-expanded="false">
+        <span class="num">03</span>
+        <span class="q-text">Et après le Big Four ? Ça continue en Ligue 1 ?</span>
+        <span class="chev" aria-hidden="true"></span>
+      </button>
+      <div class="a-wrap"><div class="a-inner"><div class="a">
+        <p>Non. Dès le Big Four terminé, <strong>chaque équipe repart totalement indépendante et autonome</strong> sur le circuit national de Ligue 1.</p>
+        <p>Aucun partage de listes, de préparation, de stratégie ni de résultats. Les deux équipes reprennent leur route séparément, comme concurrentes à part entière. Ce qui reste entre nous, c'est la bonne humeur et l'expérience partagée entre joueurs qui s'apprécient — rien de plus, rien de moins.</p>
+      </div></div></div>
+    </div>
+
+    <div class="item">
+      <button class="q" aria-expanded="false">
+        <span class="num">04</span>
+        <span class="q-text">Comment sont choisis les joueurs pour le Big Four ?</span>
+        <span class="chev" aria-hidden="true"></span>
+      </button>
+      <div class="a-wrap"><div class="a-inner"><div class="a">
+        <p>Le format du Big Four est du <strong>8 contre 8</strong>. Chaque équipe engagée fournit la moitié de l'effectif : <strong>quatre joueurs de l'Alliance et quatre joueurs des Adeptes du Gras</strong>.</p>
+        <p>La sélection se fait de manière <strong>collégiale</strong> entre les décideurs des deux équipes — les capitaines et les personnes qu'ils ont choisi d'associer à la décision. Côté Adeptes du Gras, les décideurs sont <strong>Mehdi Benaniba (Babi)</strong>, <strong>Jean-Baptiste Aymes (Bedjy)</strong> et <strong>Olivier Porte (Marmousset)</strong>.</p>
+        <p>La répartition 4/4 est actée, mais pas gravée dans le marbre. L'échéance est courte, il faut donc poser des grandes lignes rapidement — et si l'une des deux équipes présente davantage de joueurs au niveau attendu, un léger déséquilibre pourra être décidé au service du résultat.</p>
+      </div></div></div>
+    </div>
+
+    <div class="item">
+      <button class="q" aria-expanded="false">
+        <span class="num">05</span>
+        <span class="q-text">Pourquoi deux équipes, et laquelle doit gagner ?</span>
+        <span class="chev" aria-hidden="true"></span>
+      </button>
+      <div class="a-wrap"><div class="a-inner"><div class="a">
+        <p>Nos deux équipes s'étant chacune qualifiées pour l'événement, nous disposons de <strong>deux slots</strong>. Nous engageons donc deux équipes de huit, chacune composée à parts égales de joueurs de l'Alliance et des Adeptes du Gras, toutes deux constituées par les décideurs.</p>
+        <p>L'<strong>équipe 1</strong> réunit nos joueurs les plus forts sur le papier : c'est notre meilleure carte. L'<strong>équipe 2</strong> part avec un rôle d'outsider, mais elle joue pleinement sa chance — <strong>aucune des deux ne se sacrifie</strong>, toutes deux visent la victoire.</p>
+        <p>L'équipe 2 n'est en rien une voie de garage : il s'agit du <strong>tournoi le plus relevé qu'on puisse trouver en France</strong>. Ses joueurs sont regardés de près, leurs résultats et leur attitude analysés — y figurer, c'est se confronter au meilleur niveau, pas occuper un strapontin.</p>
+        <p>La raison est simple : le capitanat de l'équipe de France se joue au sommet du classement, et engager deux formations qui donnent tout double nos occasions d'y accéder. Peu importe laquelle décroche le titre — l'objectif est rempli dès que l'une des deux y arrive.</p>
+        <span class="pin">Une équipe 1 favorite, une équipe 2 qui joue sa chance à fond. Un seul objectif : le capitanat de l'équipe de France.</span>
+      </div></div></div>
+    </div>
+
+    <div class="item">
+      <button class="q" aria-expanded="false">
+        <span class="num">06</span>
+        <span class="q-text">Et si vous gagnez le Big Four ? Qui prend le capitanat de l'équipe de France ?</span>
+        <span class="chev" aria-hidden="true"></span>
+      </button>
+      <div class="a-wrap"><div class="a-inner"><div class="a">
+        <p>En cas de victoire, il a été convenu entre les deux parties — le capitaine de l'Alliance et celui des Adeptes du Gras — que le capitanat de l'équipe de France serait un <strong>co-capitanat</strong>, partagé entre les deux équipes. Ce n'est pas un capitanat exclusif : côté Adeptes, il reviendrait à l'un de nos décideurs.</p>
+        <p>Ce point est clair et doit l'être : <strong>ce co-capitanat ne se traduira par aucun favoritisme</strong>. La sélection de l'équipe de France ne sera ni orientée ni verrouillée au profit des Adeptes du Gras ou de l'Alliance. Appartenir à l'une de ces deux équipes ne donnera aucune priorité — et un capitanat partagé entre deux structures est, par construction, un garde-fou contre l'entre-soi.</p>
+        <p>La méthode de composition reste à préciser, mais la ligne est arrêtée : <strong>rompre avec les logiques d'entre-soi du passé et sélectionner sur le niveau de jeu et l'attitude, à la table comme en dehors</strong>, partout où les meilleurs profils se trouvent. Des exercices d'estimation d'un roster futur ont déjà été menés à titre indicatif, et un corps d'équipe s'est dégagé entre les parties prenantes. Le signe qui compte : <strong>il réunit un joueur de chacune des quatre équipes du Big Four</strong> — la preuve concrète que c'est le niveau, et non l'appartenance, qui guide les choix.</p>
+        <span class="pin">Un co-capitanat partagé entre les deux équipes, pas un titre exclusif. Et une équipe de France choisie sur le seul critère du niveau — la répartition déjà pressentie, un joueur par équipe du Big Four, le montre.</span>
+      </div></div></div>
+    </div>
+
+    <div class="item">
+      <button class="q" aria-expanded="false">
+        <span class="num">07</span>
+        <span class="q-text">Comment voyez-vous la suite pour les Adeptes du Gras ?</span>
+        <span class="chev" aria-hidden="true"></span>
+      </button>
+      <div class="a-wrap"><div class="a-inner"><div class="a">
+        <p>Les Adeptes du Gras occupent une place à part dans l'historique compétitif français depuis les débuts. C'est une équipe avec une réputation et des ambitions, et l'intention est de les tenir.</p>
+        <p>Le départ d'un joueur du calibre de <strong>Thibault Rigolet (GrosTiti)</strong> est une vraie perte. Mais une équipe ne repose jamais sur un seul homme : les départs et les arrivées font partie de la vie de tout collectif de haut niveau, dans le sport comme dans le jeu. L'effectif reste riche en joueurs talentueux, à des niveaux variés, que nous avons à cœur de faire progresser — c'est ce qui nous maintiendra parmi les meilleures équipes françaises, et pour longtemps.</p>
+        <p><strong>Concrètement</strong>, cela passe par un travail structuré : sessions d'entraînement et objectifs individuels posés avec chaque joueur qui le souhaite, à son rythme et selon ses envies.</p>
+        <p>Un dernier mot, qui compte autant que le reste : les Adeptes du Gras, c'est d'abord un groupe de gens qui s'apprécient. <strong>Le très haut niveau compétitif n'est pas le seul critère d'appartenance</strong> — l'esprit du groupe l'est tout autant.</p>
+      </div></div></div>
+    </div>
+
+    <div class="item">
+      <button class="q" aria-expanded="false">
+        <span class="num">08</span>
+        <span class="q-text">Comment sont sélectionnés les joueurs pour les compétitions par équipe (Ligue 1) ?</span>
+        <span class="chev" aria-hidden="true"></span>
+      </button>
+      <div class="a-wrap"><div class="a-inner"><div class="a">
+        <p>C'est un sujet qui revient souvent et qui peut créer des frictions, alors autant être clair. En Ligue 1, la table est limitée à <strong>huit joueurs</strong>, et il n'y a que <strong>deux échéances par an</strong>. Sur si peu de rendez-vous, chaque place compte énormément.</p>
+        <p>La sélection se fait <strong>à la discrétion des décideurs</strong> — les mêmes que pour le Big Four : Mehdi Benaniba (Babi), Jean-Baptiste Aymes (Bedjy) et Olivier Porte (Marmousset). Le critère qui pèse le plus n'est pas le talent brut ni même le résultat isolé : c'est <strong>l'implication</strong>. L'ancienneté dans l'équipe ne donne, elle, aucune priorité en soi.</p>
+        <p>Une équipe qui vise le haut du classement français ne peut pas composer autrement sur un nombre d'échéances aussi réduit. Le talent et les résultats restent nécessaires, mais c'est l'investissement réel dans le collectif qui départage. Concrètement, cela s'observe sur plusieurs plans :</p>
+        <p style="padding-left:1.1rem;border-left:2px solid var(--line);color:var(--parch);">
+          &bull;&nbsp; la <strong>présence aux entraînements collectifs</strong> ;<br>
+          &bull;&nbsp; l'<strong>activité sur le channel des Adeptes</strong>, où se jauge la pertinence des propositions et des échanges ;<br>
+          &bull;&nbsp; les <strong>résultats en circuit solo</strong> — sans doute le meilleur indicateur de niveau, à lire sur la durée car le solo garde une forte part d'aléatoire que personne n'ignore ;<br>
+          &bull;&nbsp; l'<strong>engagement dans les événements par équipe</strong>, y compris ceux hors Ligue 1.
+        </p>
+        <p>Un point important, et assumé. Une équipe de huit aura toujours des niveaux hétérogènes, et le règlement autorise un <strong>nombre limité de mercenaires</strong> — des joueurs extérieurs — pour participer à certains événements. Nous nous réservons le droit d'aligner un mercenaire à la place d'un membre lorsque celui-ci ne montre plus d'implication ni d'envie de se projeter dans l'équipe. L'objectif est unique : pousser l'équipe au meilleur résultat possible.</p>
+        <p>Ce levier reste un <strong>dernier recours</strong>, pas une norme. Un membre investi n'a rien à craindre : c'est précisément l'implication, et non le seul talent, qui garantit sa place. Et quand nous ferons appel à un mercenaire, nous privilégierons ceux qui affichent une réelle envie d'intégrer l'équipe à court terme, plutôt qu'un renfort purement ponctuel.</p>
+        <span class="pin">Ce n'est pas le talent seul qui aligne un joueur : c'est ce qu'il investit dans le collectif, mesurable à l'entraînement, sur le channel, en solo et sur les événements. Ne pas être sélectionné sur une échéance ne remet rien en cause — le groupe, c'est plus que les huit qui jouent.</span>
+      </div></div></div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="up">↑ Cette FAQ est vivante.</div>
+    Une question qui n'est pas ici ? Posez-la sur le Discord de l'équipe,<br>
+    elle sera ajoutée à cette page.
+  </footer>
+</div>
+
+<script>
+  document.querySelectorAll('.item .q').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var item = btn.closest('.item');
+      var isOpen = item.classList.toggle('open');
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  });
+</script>
+</body>
+</html>
